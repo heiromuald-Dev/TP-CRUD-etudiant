@@ -1,11 +1,9 @@
 import { Etudiant } from "../models/etudiant.model";
+import { donneesDeTest } from "../scripts/seed";
 
-let etudiants: Etudiant[] = [
-  { id: 1, nom: "Rakoto", prenom: "Njaka", email: "njaka.rakoto@mail.com", age: 20 },
-  { id: 2, nom: "Rabe", prenom: "Fara", email: "fara.rabe@mail.com", age: 22 },
-];
+let etudiants: Etudiant[] = [...donneesDeTest];
 
-let nextId = 3;
+let nextId = 4;  
 
 export function findAll(): Etudiant[] {
   return etudiants;

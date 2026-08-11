@@ -1,73 +1,52 @@
 import { Request, Response, NextFunction } from "express";
-import * as etudiantRepository from "../repository/etudiant.repository";
-import { ApiError } from "../middlewares/ApiError";
+import * as etudiantService from "../services/etudiant.service";
 
 export function getAllEtudiants(req: Request, res: Response) {
-  const etudiants = etudiantRepository.findAll();
+  const etudiants = etudiantService.getAllEtudiants();
   res.status(200).json({ success: true, data: etudiants });
 }
 
 export function getEtudiantById(req: Request, res: Response, next: NextFunction) {
-  const id = Number(req.params.id);
-  const etudiant = etudiantRepository.findById(id);
-
-  if (!etudiant) {
-    return next(new ApiError(404, `Étudiant avec l'id ${id} introuvable`));
+  try {
+    const etudiant = etudiantService.getEtudiantById(Number(req.params.id));
+    res.status(200).json({ success: true, data: etudiant });
+  } catch (err) {
+    next(err);
   }
-
-  res.status(200).json({ success: true, data: etudiant });
 }
 
 export function createEtudiant(req: Request, res: Response, next: NextFunction) {
-  const { nom, prenom, email, age } = req.body;
-
-  if (!nom || !prenom || !email || age === undefined) {
-    return next(
-      new ApiError(400, "Champs requis manquants : nom, prenom, email, age")
-    );
+  try {
+    const nouvelEtudiant = etudiantService.createEtudiant(req.body);
+    res.status(201).json({ success: true, data: nouvelEtudiant });
+  } catch (err) {
+    next(err);
   }
-
-  const nouvelEtudiant = etudiantRepository.create({ nom, prenom, email, age });
-  res.status(201).json({ success: true, data: nouvelEtudiant });
 }
 
 export function updateEtudiant(req: Request, res: Response, next: NextFunction) {
-  const id = Number(req.params.id);
-  const { nom, prenom, email, age } = req.body;
-
-  if (!nom || !prenom || !email || age === undefined) {
-    return next(
-      new ApiError(400, "PUT nécessite tous les champs : nom, prenom, email, age")
-    );
+  try {
+    const etudiant = etudiantService.updateEtudiant(Number(req.params.id), req.body);
+    res.status(200).json({ success: true, data: etudiant });
+  } catch (err) {
+    next(err);
   }
-
-  const etudiantModifie = etudiantRepository.update(id, { nom, prenom, email, age });
-
-  if (!etudiantModifie) {
-    return next(new ApiError(404, `Étudiant avec l'id ${id} introuvable`));
-  }
-
-  res.status(200).json({ success: true, data: etudiantModifie });
 }
 
 export function patchEtudiant(req: Request, res: Response, next: NextFunction) {
-  const id = Number(req.params.id);
-  const etudiantModifie = etudiantRepository.patch(id, req.body);
-
-  if (!etudiantModifie) {
-    return next(new ApiError(404, `Étudiant avec l'id ${id} introuvable`));
+  try {
+    const etudiant = etudiantService.patchEtudiant(Number(req.params.id), req.body);
+    res.status(200).json({ success: true, data: etudiant });
+  } catch (err) {
+    next(err);
   }
-
-  res.status(200).json({ success: true, data: etudiantModifie });
 }
 
 export function deleteEtudiant(req: Request, res: Response, next: NextFunction) {
-  const id = Number(req.params.id);
-  const supprime = etudiantRepository.remove(id);
-
-  if (!supprime) {
-    return next(new ApiError(404, `Étudiant avec l'id ${id} introuvable`));
+  try {
+    etudiantService.deleteEtudiant(Number(req.params.id));
+    res.status(204).send();
+  } catch (err) {
+    next(err);
   }
-
-  res.status(204).send();
 }

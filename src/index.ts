@@ -1,7 +1,6 @@
 import app from "./app";
+import { config } from "./configuration/config";
 
-const PORT = 3000;
-
-app.listen(PORT, () => {
-  console.log(`Serveur démarré sur http://localhost:${PORT}`);
+app.listen(config.port, () => {
+  console.log(`Serveur démarré sur http://localhost:${config.port}`);
 });
