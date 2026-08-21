@@ -1,0 +1,276 @@
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap");
+
+:root {
+  --paper: #faf8f3;
+  --paper-raised: #ffffff;
+  --ink: #1b1f3b;
+  --ink-soft: #565a75;
+  --rule: #d8d3c4;
+  --accent: #2f6f4e;
+  --accent-soft: #e4efe8;
+  --danger: #b3452c;
+  --danger-soft: #f5e6e0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "IBM Plex Sans", sans-serif;
+}
+
+h1, h2 {
+  font-family: "Fraunces", serif;
+  margin: 0;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+}
+
+input {
+  font-family: inherit;
+}
+
+.auth-screen {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 380px;
+  background: var(--paper-raised);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  padding: 40px 36px;
+}
+
+.auth-eyebrow, .page-eyebrow, .form-eyebrow {
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin: 0 0 8px;
+}
+
+.auth-title {
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 28px;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+
+.field input {
+  font-size: 15px;
+  color: var(--ink);
+  padding: 10px 12px;
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  background: var(--paper);
+}
+
+.field input:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+.btn-primary {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 11px 20px;
+  border-radius: 3px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.btn-primary:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--ink-soft);
+  padding: 8px 14px;
+  font-size: 13px;
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+}
+
+.btn-danger {
+  background: var(--danger-soft);
+  color: var(--danger);
+  padding: 8px 14px;
+  font-size: 13px;
+  border-radius: 3px;
+}
+
+.auth-switch {
+  background: none;
+  color: var(--accent);
+  font-size: 13px;
+  margin-top: 20px;
+  padding: 0;
+}
+
+.auth-message, .form-message {
+  font-size: 13px;
+  color: var(--danger);
+  margin: 0;
+}
+
+.page {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 48px 24px 80px;
+}
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 32px;
+  border-bottom: 2px solid var(--ink);
+  padding-bottom: 16px;
+}
+
+.page-title {
+  font-size: 32px;
+  font-weight: 600;
+}
+
+.page-error {
+  color: var(--danger);
+  font-size: 14px;
+  margin: -8px 0 24px;
+}
+
+.panel {
+  background: var(--paper-raised);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  padding: 28px;
+  margin-bottom: 24px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px 20px;
+  margin-bottom: 20px;
+}
+
+.form-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.registre {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.registre thead th {
+  text-align: left;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  font-weight: 500;
+  padding: 0 12px 10px;
+  border-bottom: 1px dashed var(--rule);
+}
+
+.registre tbody td {
+  padding: 12px;
+  border-bottom: 1px solid var(--rule);
+  vertical-align: middle;
+}
+
+.registre tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.cell-mono {
+  font-family: "IBM Plex Mono", monospace;
+  color: var(--ink-soft);
+  font-size: 13px;
+}
+
+.cell-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.empty-title {
+  font-family: "Fraunces", serif;
+  font-size: 20px;
+  margin: 0 0 6px;
+}
+
+.empty-subtitle {
+  color: var(--ink-soft);
+  font-size: 14px;
+  margin: 0;
+}
+
+@media (max-width: 640px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .page-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .registre thead {
+    display: none;
+  }
+
+  .registre, .registre tbody, .registre tr, .registre td {
+    display: block;
+    width: 100%;
+  }
+
+  .registre tbody tr {
+    border-bottom: 1px solid var(--rule);
+    padding: 12px 0;
+  }
+
+  .cell-actions {
+    justify-content: flex-start;
+    margin-top: 8px;
+  }
+}
