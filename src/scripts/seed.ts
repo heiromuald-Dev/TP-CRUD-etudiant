@@ -1,4 +1,4 @@
-import { Etudiant } from "../models/etudiant.model";
+import { Etudiant } from "../models/etudiantModel";
 
 export const donneesDeTest: Etudiant[] = [
   { id: 1, nom: "John", prenom: "Doe", email: "john@mail.com", age: 20 },
