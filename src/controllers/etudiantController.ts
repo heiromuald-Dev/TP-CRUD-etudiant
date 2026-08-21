@@ -2,11 +2,21 @@ import { Request, Response, NextFunction } from "express";
 import * as etudiantService from "../services/etudiantService";
 import { ApiError } from "../middlewares/ApiError";
 
-function parseId(rawId: string): number {
-  const id = Number(rawId);
+function parseId(rawId: string | string[]): number {
+  let value: string;
+
+  if (Array.isArray(rawId)) {
+    value = rawId[0];
+  } else {
+    value = rawId;
+  }
+
+  const id = Number(value);
+
   if (!Number.isInteger(id) || id <= 0) {
     throw new ApiError(400, "L'id doit être un entier positif");
   }
+
   return id;
 }
 
