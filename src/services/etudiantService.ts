@@ -1,5 +1,5 @@
-import { Etudiant } from "../models/etudiant.model";
-import * as etudiantRepository from "../repositories/etudiant.repository";
+import { Etudiant } from "../models/etudiantModel";
+import * as etudiantRepository from "../repositories/etudiantRepository";
 import { ApiError } from "../middlewares/ApiError";
 
 type EtudiantInput = Omit<Etudiant, "id">;
