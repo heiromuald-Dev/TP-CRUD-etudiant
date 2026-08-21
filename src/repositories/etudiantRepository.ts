@@ -1,4 +1,4 @@
-import { Etudiant } from "../models/etudiant.model";
+import { Etudiant } from "../models/etudiantModel";
 import { donneesDeTest } from "../scripts/seed";
 
 let etudiants: Etudiant[] = [...donneesDeTest];
