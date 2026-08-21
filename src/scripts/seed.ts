@@ -1,12 +1,29 @@
-import { Etudiant } from "../models/etudiant.model";
+import dotenv from "dotenv";
+dotenv.config();
 
-export const donneesDeTest: Etudiant[] = [
-  { id: 1, nom: "John", prenom: "Doe", email: "john@mail.com", age: 20 },
-  { id: 2, nom: "Marie", prenom: "Jane", email: "marie@mail.com", age: 22 },
-  { id: 3, nom: "Parker", prenom: "Petter", email: "Parker@mail.com", age: 21 },
+import { pool } from "../configuration/database";
+
+const etudiants = [
+  { nom: "Rakoto", prenom: "Njaka", email: "njaka.rakoto@mail.com", age: 20 },
+  { nom: "Rabe", prenom: "Fara", email: "fara.rabe@mail.com", age: 22 },
+  { nom: "Andria", prenom: "Tovo", email: "tovo.andria@mail.com", age: 21 },
 ];
 
-if (require.main === module) {
-  console.log("Données de test :");
-  console.log(donneesDeTest);
+async function seed() {
+  for (const etudiant of etudiants) {
+    await pool.query(
+      `INSERT INTO etudiants (nom, prenom, email, age)
+       VALUES ($1, $2, $3, $4)
+       ON CONFLICT (email) DO NOTHING`,
+      [etudiant.nom, etudiant.prenom, etudiant.email, etudiant.age]
+    );
+  }
+
+  console.log("Seed terminé");
+  await pool.end();
 }
+
+seed().catch((err) => {
+  console.error("Erreur pendant le seed :", err);
+  process.exit(1);
+});
